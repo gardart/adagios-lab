@@ -3,7 +3,7 @@ This LAB contains Adagios server running Nagios 4, Adagios, OKconfig, Thruk and 
 The install script also uses OKconfig and pyNag to configure Nagios with some hosts, services, contactgroups and users.
 Adagios project website is at http://adagios.org
 
-# Installation - on Google Cloud Platform
+# Installation
 Create a project called adagios-lab-01 in GCP. Next step is to create the agents and Adagios server running on Centos 7.
 This setup also installs Nagios 4, Thruk, OKconfig and PNP4Nagios.
 
