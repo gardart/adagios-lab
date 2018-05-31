@@ -25,3 +25,5 @@ gcloud beta compute --project=adagios-lab-01 instances create adagios-server --m
 ```bash
 gcloud compute --project=adagios-lab-01 firewall-rules create adagios --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:5666,tcp:6557 --source-ranges=0.0.0.0/0 --target-tags=adagios
 ```
+
+Next open up your browser and visit http://[adagios_server_external_ip]/adagios
