@@ -23,6 +23,7 @@ git add *
 git commit -m "Initial commit"
 mkdir -p /etc/nagios/adagios
 pynag config --append cfg_dir=/etc/nagios/adagios
+pynag config --append cfg_dir=/etc/nagios/commands
 sudo chown -R nagios:nagios /etc/nagios/* /etc/nagios/.git
 pynag config --append "broker_module=/usr/lib64/check_mk/livestatus.o /var/spool/nagios/cmd/livestatus"
 sudo echo "ALLOWED_HOSTS = ['*']" >> /etc/adagios/adagios.conf
