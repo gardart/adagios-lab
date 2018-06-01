@@ -124,8 +124,8 @@ okconfig addhost www.mbl.is --template http --group news
 okconfig addhost www.visir.is --template http --group news
 okconfig addhost www.cnn.com --template http --group news
 okconfig addhost www.opinkerfi.is --template https --address 176.57.225.21 --group opinkerfi
-okconfig addhost adagios-agent-01 --template linux --group opinkerfi
-okconfig addhost adagios-agent-02 --template linux --group opinkerfi
+okconfig addhost centos7-01 --template linux --group opinkerfi
+okconfig addhost ws2016-01 --template windows --group opinkerfi
 sudo systemctl reload nagios
 
 # Optional configuration

@@ -10,11 +10,11 @@ This setup also installs Nagios 4, Thruk, OKconfig and PNP4Nagios.
 ## Adagios agents installation
 Create two centos instances to work as agents that can be monitored by Adagios server 
 ```bash
-# Create machine to monitor by Adagios - adagios-agent-01
-gcloud beta compute --project=adagios-lab-01 instances create adagios-agent-01 --machine-type=f1-micro --tags=adagios --image=centos-7-v20180523 --image-project=centos-cloud --metadata-from-file startup-script=scripts/install-adagios-agent.sh
+# Create server to monitor by Adagios, with preinstalled NRPE agent - Centos 7
+gcloud beta compute --project=adagios-lab-01 instances create centos7-01 --machine-type=f1-micro --tags=adagios --image=centos-7-v20180523 --image-project=centos-cloud --metadata-from-file startup-script=scripts/install-adagios-agent.sh
 
-# Create machine to monitor by Adagios - adagios-agent-02
-gcloud beta compute --project=adagios-lab-01 instances create adagios-agent-02 --machine-type=f1-micro --tags=adagios --image=centos-7-v20180523 --image-project=centos-cloud --metadata-from-file startup-script=scripts/install-adagios-agent.sh
+# Create server to monitor by Adagios, with preinstalled NRPE agent - Windows Server 2016
+gcloud beta compute --project=adagios-lab-01 instances create ws2016-01 --machine-type=n1-standard-1 --tags=adagios --image=windows-server-2016-dc-v20180508 --image-project=windows-cloud --boot-disk-size=50GB --metadata-from-file windows-startup-script-ps1=scripts/install-adagios-agent.ps1
 ```
 ## Adagios server installation
 ```bash
