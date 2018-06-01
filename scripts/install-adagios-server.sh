@@ -10,7 +10,7 @@ sudo yum install -y git acl libstdc++-static python-setuptools pnp4nagios xinetd
 sudo yum install -y nagios nagios-plugins-all
 sudo yum install -y check-mk-livestatus
 sudo yum --enablerepo=ok install -y adagios pynag
-sudo yum --enablerepo=ok-testing install -y okconfig nagios-okplugin-check_uptime
+sudo yum --enablerepo=ok-testing install -y okconfig nagios-okplugin-check_uptime nagios-okplugin-crit2warn
 sudo usermod -a -G nagios "$(whoami)"
 sudo su - "$(whoami)"
 sudo chown -R nagios:nagios /etc/nagios
