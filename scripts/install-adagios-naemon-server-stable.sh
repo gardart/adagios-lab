@@ -15,7 +15,8 @@ sudo yum install -y naemon xinetd
 
 # Install Adagios and other needed packages
 sudo yum install -y git acl pnp4nagios python-setuptools
-sudo yum --enablerepo=ok install -y adagios okconfig
+sudo yum --enablerepo=ok install -y adagios
+sudo yum --enablerepo=ok-testing install -y okconfig
 
 # Now all the packages have been installed, and we need to do a little bit of
 # configuration before we start doing awesome monitoring
