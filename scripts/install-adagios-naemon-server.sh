@@ -184,6 +184,8 @@ sudo yum install -y nagios-okplugin-*
 okconfig addgroup news --alias "News web sites"
 okconfig addgroup opinkerfi --alias "Opin Kerfi"
 okconfig addgroup readonly --alias "Users with Read-Only Access"
+okconfig addgroup default --alias "Default Group"
+#okconfig addcontact thrukadmin --alias "Thruk Admin"
 okconfig addcontact guest --alias "Guest User"
 okconfig addcontact adagios --alias "Adagios Admin"
 okconfig addhost www.ruv.is --template http --address 104.20.39.110 --group news
@@ -198,7 +200,7 @@ sudo systemctl reload naemon
 # Optional configuration
 pynag list WHERE contactgroup_name='admins' and object_type=contactgroup
 # Add user adagios to admins (Nagios group)
-echo y | pynag update SET members=thrukadmin,adagios WHERE contactgroup_name='admins' and object_type=contactgroup
+echo y | pynag update SET members=naemonadmin,adagios WHERE contactgroup_name='admins' and object_type=contactgroup
 pynag list WHERE contactgroup_name='readonly' and object_type=contactgroup
 # Add user guest to readonly Nagios group
 echo y | pynag update SET members=guest WHERE contactgroup_name='readonly' and object_type=contactgroup
