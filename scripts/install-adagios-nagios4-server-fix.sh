@@ -8,21 +8,24 @@ sudo yum update -y ok-release
 sudo yum clean all
 sudo yum install -y git acl libstdc++-static python-setuptools pnp4nagios xinetd
 sudo yum install -y nagios nagios-plugins-all
+sudo yum install -y make gcc-c++ curl wget
 #sudo yum install -y check-mk-livestatus
 
-# Build mk-livestatus for Nagios4
-wget http://www.mathias-kettner.de/download/mk-livestatus-1.2.6.tar.gz
-sudo yum install -y make gcc-c++
-tar -zxvf mk-livestatus-1.2.6.tar.gz
-cd mk-livestatus-1.2.6
-./configure --with-nagios4
-sudo make
-sudo make install
-cd
 sudo yum --enablerepo=ok install -y adagios pynag
 sudo yum --enablerepo=ok-testing install -y okconfig nagios-okplugin-check_uptime nagios-okplugin-crit2warn
 sudo usermod -a -G nagios "$(whoami)"
 sudo su - "$(whoami)"
+
+# Build mk-livestatus for Nagios4
+mkdir test
+cd test
+wget http://www.mathias-kettner.de/download/mk-livestatus-1.2.6.tar.gz
+tar -zxvf mk-livestatus-1.2.6.tar.gz
+cd mk-livestatus-1.2.6
+./configure --with-nagios4
+make
+sudo make install
+
 sudo chown -R nagios:nagios /etc/nagios
 sudo chmod -R 775 /etc/nagios
 cd /etc/nagios/
