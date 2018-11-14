@@ -111,11 +111,12 @@ service livestatus
 
     # Paths and users.
     user        = nagios
-    server      = /usr/bin/unixcat
+    server      = /usr/local/bin/unixcat
     server_args = /var/spool/nagios/cmd/livestatus
 }
 EOF
 
+sudo chmod 600 /etc/xinetd.d/livestatus
 rm -f /etc/thruk/htpasswd
 ln -s /etc/nagios/passwd /etc/thruk/htpasswd
 
@@ -163,5 +164,15 @@ sudo sed -i 's|authorized_contactgroup_for_all_service_commands=|authorized_cont
 sudo sed -i 's|authorized_contactgroup_for_all_host_commands=|authorized_contactgroup_for_all_host_commands=admins|g' /etc/thruk/cgi.cfg
 sudo sed -i 's|authorized_contactgroup_for_read_only=|authorized_contactgroup_for_read_only=readonly|g' /etc/thruk/cgi.cfg
 
-sudo systemctl reload nagios
+# Use Thruk instead of default Nagios in Adagios menu
+cat >/etc/adagios/conf.d/thruk.conf << EOF
+nagios_url = "/thruk/#cgi-bin/status.cgi?style=combined&hst_s0_hoststatustypes=4&hst_s0_servicestatustypes=31&hst_s0_hostprops=10&hst_s0_serviceprops=0&svc_s0_hoststatustypes=3&svc_s0_servicestatustypes=28&svc_s0_hostprops=10&svc_s0_serviceprops=10&svc_s0_hostprop=2&svc_s0_hostprop=8&title=All+Unhandled+Problems"
+EOF
+
+# Redirect welcome page to /adagios
+cat >/var/www/html/index.html << EOF
+<meta http-equiv="refresh" content="1;url=/adagios">
+EOF
+
+sudo systemctl restart nagios
 sudo systemctl restart httpd
