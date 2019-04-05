@@ -14,7 +14,7 @@ sudo yum install -y epel-release
 sudo yum install -y naemon xinetd
 
 # Install Adagios and other needed packages
-sudo yum install -y git acl pnp4nagios python-setuptools
+sudo yum install -y git acl pnp4nagios python-setuptools python2-django16
 sudo yum --enablerepo=ok-testing install -y adagios okconfig
 
 # Now all the packages have been installed, and we need to do a little bit of

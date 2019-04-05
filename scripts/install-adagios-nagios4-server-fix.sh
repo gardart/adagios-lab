@@ -6,7 +6,7 @@ sudo rpm -Uvh https://labs.consol.de/repo/stable/rhel7/x86_64/labs-consol-stable
 sudo yum install -y epel-release
 sudo yum update -y ok-release
 sudo yum clean all
-sudo yum install -y git acl libstdc++-static python-setuptools pnp4nagios xinetd
+sudo yum install -y git acl libstdc++-static python-setuptools pnp4nagios xinetd python2-django16
 sudo yum install -y nagios nagios-plugins-all
 sudo yum install -y make gcc-c++ curl wget
 #sudo yum install -y check-mk-livestatus
