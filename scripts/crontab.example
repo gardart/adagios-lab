@@ -1,0 +1,11 @@
+# Make sure Nagios is running
+#*/30 * * * * /opt/adagios/scripts/watch_nagios.sh
+
+# Make sure Nagios / Naemon is running, update custom web page with results
+#*/5 * * * * /usr/lib64/nagios/plugins/check_file_age /var/log/nagios/status.dat -w 300 -c 300 > /var/www/html/check/index.html 2>&1 > /dev/null
+
+# Backup Nagios / Adagios / Thruk configs
+#0 1 * * * /opt/adagios/scripts/backup-nagios.sh
+
+# Generate Report
+#5 * * * * /opt/scripts/nagios_scheduler_report_generator.sh > /var/log/nagios/scheduler/scheduler_$(date +\%Y\%m\%d_\%H:\%M:\%S\%z).log 2>&1
