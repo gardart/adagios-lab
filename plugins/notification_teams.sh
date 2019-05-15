@@ -1,4 +1,5 @@
 #!/bin/bash
+# sh notification_teams.sh -a "ACKNOWLEDGEMENT" -b "monitoring-server" -e "Testservice" -f "OK" -g "servout" -z "https://outlook.office.com/webhook/xxxxxxx/IncomingWebhook/"
 
 while getopts 'a:b:c:d:e:f:g:y:z:' opt ; do
   case $opt in
