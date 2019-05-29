@@ -14,8 +14,8 @@ sudo yum install -y epel-release
 sudo yum install -y naemon xinetd
 
 # Install Adagios and other needed packages
-sudo yum install -y git acl pnp4nagios python-setuptools python2-django16
-sudo yum --enablerepo=ok-testing install -y adagios okconfig
+sudo yum install -y git acl pnp4nagios python-setuptools python2-django16 vim net-tools
+sudo yum --enablerepo=ok-testing install -y adagios okconfig nagios-okplugin-crit2warn
 
 # Now all the packages have been installed, and we need to do a little bit of
 # configuration before we start doing awesome monitoring
@@ -67,10 +67,20 @@ sudo sed -i '
     s|/usr/sbin/nagios|/usr/bin/naemon|g' /etc/adagios/adagios.conf
 
 # Make okconfig naemon aware
+#sudo sed -i '
+#    s|/etc/nagios/nagios.cfg|/etc/naemon/naemon.cfg|g
+#    s|/etc/nagios/okconfig/|/etc/naemon/okconfig/|g
+#    s|/etc/nagios/okconfig/examples|/etc/naemon/okconfig/examples|g' /etc/okconfig.conf
+
 sudo sed -i '
     s|/etc/nagios/nagios.cfg|/etc/naemon/naemon.cfg|g
     s|/etc/nagios/okconfig/|/etc/naemon/okconfig/|g
+    s|/usr/share/okconfig/templates|/etc/naemon/okconfig/templates|g
     s|/etc/nagios/okconfig/examples|/etc/naemon/okconfig/examples|g' /etc/okconfig.conf
+
+sudo mkdir -p /etc/naemon/okconfig/{templates,examples}
+sudo cp -r /usr/share/okconfig/templates/* /etc/naemon/okconfig/templates/
+sudo cp -r /usr/share/okconfig/examples/* /etc/naemon/okconfig/examples/
 
 sudo okconfig init
 sudo okconfig verify
@@ -123,6 +133,9 @@ sudo htpasswd -b /etc/thruk/htpasswd adagios adagios
 
 # Disable OMD thruk service
 sudo systemctl disable thruk.service
+sudo mv /etc/httpd/conf.d/thruk_cookie_auth_vhost.conf /etc/httpd/conf.d/thruk_cookie_auth_vhost.conf.disabled
+sudo touch /etc/httpd/conf.d/thruk_cookie_auth_vhost.conf
+
 
 # Configure livestatus for remote connections
 sudo touch /etc/xinetd.d/livestatus
@@ -220,3 +233,10 @@ sudo sed -i 's|authorized_contactgroup_for_read_only=|authorized_contactgroup_fo
 
 sudo systemctl reload naemon
 sudo systemctl restart httpd
+
+# Postfix
+sudo postfix flush
+sudo postsuper -d ALL
+#sudo sed -i 's|\#relayhost = \[gateway.my.domain\]|relayhost \= \[mail.server.is\]|g' /etc/postfix/main.cf
+sudo systemctl enable postfix
+sudo systemctl restart postfix
