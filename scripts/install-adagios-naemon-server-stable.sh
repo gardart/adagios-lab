@@ -12,6 +12,7 @@ sudo yum install -y epel-release
 
 # Install Naemon / Thruk
 sudo yum install -y naemon xinetd
+sudo cp -n /usr/share/nagios/html/images/logos/*.* /usr/share/thruk/themes/themes-available/Classic/images/logos
 
 # Install Adagios and other needed packages
 sudo yum install -y git acl pnp4nagios python-setuptools python2-django16
