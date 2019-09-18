@@ -67,10 +67,6 @@ sudo sed -i '
     s|/usr/sbin/nagios|/usr/bin/naemon|g' /etc/adagios/adagios.conf
 
 # Make okconfig naemon aware
-#sudo sed -i '
-#    s|/etc/nagios/nagios.cfg|/etc/naemon/naemon.cfg|g
-#    s|/etc/nagios/okconfig/|/etc/naemon/okconfig/|g
-#    s|/etc/nagios/okconfig/examples|/etc/naemon/okconfig/examples|g' /etc/okconfig.conf
 
 sudo sed -i '
     s|/etc/nagios/nagios.cfg|/etc/naemon/naemon.cfg|g
@@ -82,7 +78,7 @@ sudo mkdir -p /etc/naemon/okconfig/{templates,examples}
 sudo cp -r /usr/share/okconfig/templates/* /etc/naemon/okconfig/templates/
 sudo cp -r /usr/share/okconfig/examples/* /etc/naemon/okconfig/examples/
 
-sudo okconfig init
+#sudo okconfig init
 sudo okconfig verify
 
 # Add naemon to apache group so it has permissions to pnp4nagios's session files
