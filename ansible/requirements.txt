@@ -1,0 +1,4 @@
+ansible
+pywinrm
+pywinrm[kerberos]
+
