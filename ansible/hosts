@@ -1,0 +1,12 @@
+[windows]
+WindowsServer  ansible_host=127.0.0.1
+WindowsServer2  ansible_host=172.17.0.1
+
+[windows:vars]
+ansible_user=vagrant
+ansible_password=Vagrant.123
+ansible_port=5986
+ansible_connection=winrm
+ansible_winrm_transport=ntlm
+ansible_winrm_server_cert_validation=ignore
+

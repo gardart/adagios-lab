@@ -1,7 +1,7 @@
 # Setja upp Ansible með Virtualenv og winrm stuðning
 
 sudo yum install epel-release
-sudo yum install python-devel python-setuptools python-pip krb5-devel krb5-libs krb5-workstation bind-utils
+sudo yum install python-devel python-setuptools python-pip krb5-devel krb5-libs krb5-workstation bind-utils gcc git
 sudo pip install --upgrade pip
 sudo pip install virtualenv
 
@@ -11,9 +11,13 @@ pip install ansible
 #pip install molecule
 pip install pywinrm
 pip install pywinrm[kerberos]
+ansible-galaxy install deekayen.chocolatey
 
-# Configure hosts.ini and group_vars/windows.yml
+# Configure hosts 
 # Test ping
 ansible -i hosts.ini windows -m win_ping
+
+# Windows AD account with winrm
+sudo cp krb5.conf.d/EXAMPLE.COM.conf /etc/krb5.conf.d/
 
 
