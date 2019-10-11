@@ -1,4 +1,10 @@
 # Setja upp Ansible með Virtualenv og winrm stuðning
+# Clone
+git clone --recursive https://github.com/gardart/adagios-lab.git
+cd adagios-lab
+git pull --recurse-submodules
+git submodule update --recursive --remote
+
 
 sudo yum install epel-release
 sudo yum install python-devel python-setuptools python-pip krb5-devel krb5-libs krb5-workstation bind-utils gcc git
