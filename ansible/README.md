@@ -11,7 +11,7 @@ pip install ansible
 #pip install molecule
 pip install pywinrm
 pip install pywinrm[kerberos]
-ansible-galaxy install deekayen.chocolatey
+#ansible-galaxy install deekayen.chocolatey
 
 # Configure hosts 
 # Test ping
@@ -20,4 +20,7 @@ ansible -i hosts.ini windows -m win_ping
 # Windows AD account with winrm
 sudo cp krb5.conf.d/EXAMPLE.COM.conf /etc/krb5.conf.d/
 
+# Install Adagios agent with Ansible
+git submodule update
+ansible-playbook -i hosts install-adagios-agent-win.yml 
 
