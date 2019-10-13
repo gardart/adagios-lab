@@ -1,0 +1,17 @@
+- hosts: windows
+  gather_facts: true
+  vars:
+    temp_path: '{{ ansible_env.TEMP }}'
+    allowed_hosts: "127.0.0.1,adagios-server"
+    adagios_agent_version: "1.0.0.1"
+  tasks:
+    - name: show temp path
+      debug:
+        var: temp_path
+
+    - name: show env ProgramFiles
+      debug:
+        var: ansible_env['ProgramFiles']
+  roles:
+    - ansible-adagios-agent-windows
+
