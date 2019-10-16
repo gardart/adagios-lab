@@ -1,4 +1,6 @@
 ansible
 pywinrm
 pywinrm[kerberos]
-
+kerberos
+pykerberos
+requests_kerberos
