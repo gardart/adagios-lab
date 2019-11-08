@@ -7,6 +7,7 @@ sudo yum install -y epel-release
 sudo yum update -y ok-release
 sudo yum clean all
 sudo yum install -y git acl libstdc++-static python-setuptools pnp4nagios xinetd python2-django16
+sudo yum install -y nagios-selinux nrpe-selinux
 sudo yum install -y nagios nagios-plugins-all
 sudo yum install -y make gcc-c++ curl wget
 #sudo yum install -y check-mk-livestatus
