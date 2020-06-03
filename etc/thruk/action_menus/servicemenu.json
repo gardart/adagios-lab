@@ -1,0 +1,16 @@
+{
+	"icon": "/thruk/themes/{{theme}}/images/dropdown.png",
+	"title": "Service Menu",
+	"menu": [{
+			"icon": "/thruk/themes/{{theme}}/images/page_white_text.png",
+			"label": "View service in Adagios",
+			"action": "https://$HOSTBACKENDNAME$/adagios/status/detail?host_name=$HOSTNAME$&service_description=$SERVICEDESC$",
+			"target": "_blank"
+		},"-", {
+                        "icon": "/thruk/themes/{{theme}}/images/page_white_text.png",
+                        "label": "Search host in wiki",
+                        "action": "https://wiki/dosearchsite.action?queryString=$HOSTNAME$",
+                        "target": "_blank"
+		}
+	]
+}

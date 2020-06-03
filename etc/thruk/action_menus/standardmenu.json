@@ -1,0 +1,22 @@
+{
+    "icon":"/thruk/themes/{{theme}}/images/dropdown.png",
+    "title": "sample menu",
+    "menu": [
+      {
+        "icon":   "/thruk/themes/{{theme}}/images/arrow_refresh.png",
+        "label":  "refresh",
+        "action": "server://refresh/$HOSTNAME$"
+      },
+      {
+        "icon":   "/thruk/themes/{{theme}}/images/page_white_key.png",
+        "label":  "example",
+        "action": "server://example/$HOSTNAME$/$SERVICEDESC$"
+      },
+      "-",
+      {
+        "icon":   "/thruk/themes/{{theme}}/images/page_white_text.png",
+        "label":  "wiki",
+        "action": "http://company-wiki/pages/$HOSTNAME$"
+      }
+    ]
+  }
